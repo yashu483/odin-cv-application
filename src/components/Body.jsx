@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import PersonalInfo from "./PersonalInfo";
 const SECTIONS = [
   { name: "Personal Information", key: "personalInfo" },
   { name: "Education", key: "education" },
@@ -9,9 +9,11 @@ const SECTIONS = [
   { name: "Preview", key: "preview" },
 ];
 
+const SectionComponents = { personalInfo: <PersonalInfo /> };
+
 function Header({ selectedSection, changeSection }) {
   return (
-    <>
+    <header>
       <h1>CV / Resume Builder</h1>
       <nav>
         {SECTIONS.map((section) => (
@@ -27,7 +29,7 @@ function Header({ selectedSection, changeSection }) {
           </button>
         ))}
       </nav>
-    </>
+    </header>
   );
 }
 function Footer() {
@@ -62,6 +64,7 @@ function Body() {
           SECTIONS.filter((section) => section.key === selectedSection)[0]
         }
       />
+      <PersonalInfo />
       <Footer />
     </>
   );
