@@ -1,5 +1,7 @@
 import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
+import Education from "./Education";
+
 const SECTIONS = [
   { name: "Personal Information", key: "personalInfo" },
   { name: "Education", key: "education" },
@@ -9,7 +11,10 @@ const SECTIONS = [
   { name: "Preview", key: "preview" },
 ];
 
-const SectionComponents = { personalInfo: <PersonalInfo /> };
+const SectionComponents = {
+  personalInfo: <PersonalInfo />,
+  education: <Education />,
+};
 
 function Header({ selectedSection, changeSection }) {
   return (
@@ -65,6 +70,7 @@ function Body() {
         }
       />
       <PersonalInfo />
+      <Education />
       <Footer />
     </>
   );

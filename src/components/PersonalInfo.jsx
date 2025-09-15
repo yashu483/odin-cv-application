@@ -30,27 +30,52 @@ function PersonalInfo({ changeToNextSection }) {
           id="fullName"
           name="fullName"
           onChange={handleInput}
+          value={personalData.fullName}
         />
       </div>
 
       <div>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" onChange={handleInput} />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            onChange={handleInput}
+            value={personalData.email}
+          />
         </div>
         <div>
           <label htmlFor="phone">Phone</label>
-          <input type="tel" id="phone" onChange={handleInput} name="phone" />
+          <input
+            type="tel"
+            id="phone"
+            onChange={handleInput}
+            name="phone"
+            value={personalData.phone}
+          />
         </div>
       </div>
       <div>
         <label htmlFor="address">Address</label>
-        <input type="text" id="address" name="address" onChange={handleInput} />
+        <input
+          type="text"
+          id="address"
+          name="address"
+          onChange={handleInput}
+          value={personalData.address}
+        />
       </div>
       <div>
         <div>
           <label htmlFor="github">GitHub Link</label>
-          <input type="url" id="github" name="github" onChange={handleInput} />
+          <input
+            type="url"
+            id="github"
+            name="github"
+            onChange={handleInput}
+            value={personalData.github}
+          />
         </div>
         <div>
           <label htmlFor="linkedIn">LinkedIn Profile Link</label>
@@ -59,6 +84,7 @@ function PersonalInfo({ changeToNextSection }) {
             id="linkedIn"
             name="linkedIn"
             onChange={handleInput}
+            value={personalData.linkedIn}
           />
         </div>
       </div>
@@ -69,6 +95,7 @@ function PersonalInfo({ changeToNextSection }) {
           name="personalSite"
           id="personalSite"
           onChange={handleInput}
+          value={personalData.personalSite}
         />
       </div>
       <div>
