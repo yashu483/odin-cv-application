@@ -65,16 +65,23 @@ function Footer() {
 }
 
 function Main({ selectedSectionObj, personalData, setPersonalData }) {
-  return (
-    <main>
-      {selectedSectionObj.key === "personalInfo" ? (
-        <PersonalInfo
-          personalData={personalData}
-          setPersonalData={setPersonalData}
-        />
-      ) : null}
-    </main>
-  );
+  function renderSection() {
+    switch (selectedSectionObj.key) {
+      case "personalInfo":
+        return (
+          <PersonalInfo
+            personalData={personalData}
+            setPersonalData={setPersonalData}
+          />
+        );
+      case "education": {
+        return <Education />;
+      }
+      default:
+        return null;
+    }
+  }
+  return <main>{renderSection()}</main>;
 }
 
 function Body() {
