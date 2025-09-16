@@ -18,13 +18,63 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0;
 }
 header {
   text-align: center;
+  max-width: 1350px;
+  width: 100%;
+}
+
+header > h1 {
+  border: 5px solid blue;
+  border-radius: 15px;
+  padding: 3rem 0;
+  background-color: blue;
+  color: white;
+}
+header > nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 3px solid blue;
+  border-radius: 15px;
+  padding: 3rem 3rem;
+  gap: 2rem;
+}
+.selected-section-button {
+  border: 2px solid rgb(0, 0, 255) !important ;
+  background-color: rgb(135, 206, 235, 0.5);
+}
+header > nav > button {
+  padding: 1rem 10px;
+  border: 2px solid skyblue;
+  flex: 1;
+  background-color: white;
+  font-weight: 500;
 }
 footer {
+  max-width: 1350px;
+  width: 100%;
   text-align: center;
+}
+footer > nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 3px solid blue;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+  gap: 2rem;
+}
+
+footer > nav > button {
+  padding: 10px;
+  min-width: 100px;
+  border: 1px solid blue;
+  background-color: white;
+  font-weight: 600;
 }
 main {
   flex: 1;

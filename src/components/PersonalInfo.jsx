@@ -7,7 +7,7 @@ function PersonalInfo({ personalData, setPersonalData }) {
     });
   }
   return (
-    <div>
+    <div className="personal-info">
       <h2>Personal Information</h2>
       <form>
         <div>
