@@ -2,17 +2,30 @@ import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import Education from "./Education";
 
+const personalInfo = {
+  fullName: "",
+  email: "",
+  phone: "",
+  address: "",
+  github: "",
+  linkedIn: "",
+  personalSite: "",
+  summary: "",
+};
 const SECTIONS = [
-  { name: "Personal Information", key: "personalInfo" },
+  {
+    name: "Personal Information",
+    key: "personalInfo",
+  },
   { name: "Education", key: "education" },
   { name: "Experiences", key: "experiences" },
-  { name: "Skills", key: "skills" },
+  { name: "Projects", key: "projects" },
   { name: "Other Information", key: "otherInfo" },
   { name: "Preview", key: "preview" },
 ];
 
 const SectionComponents = {
-  personalInfo: <PersonalInfo />,
+  personalInfo: <PersonalInfo personalInfo={personalInfo} />,
   education: <Education />,
 };
 
@@ -40,6 +53,10 @@ function Header({ selectedSection, changeSection }) {
 function Footer() {
   return (
     <footer>
+      <nav>
+        <button type="button">Previous</button>
+        <button type="button">Next</button>
+      </nav>
       <h3 className="footer-link">
         <a href="#">Created By Yashu</a>
       </h3>
@@ -47,16 +64,22 @@ function Footer() {
   );
 }
 
-function Main({ selectedSectionObj }) {
+function Main({ selectedSectionObj, personalData, setPersonalData }) {
   return (
     <main>
-      <h2>{selectedSectionObj.name}</h2>
+      {selectedSectionObj.key === "personalInfo" ? (
+        <PersonalInfo
+          personalData={personalData}
+          setPersonalData={setPersonalData}
+        />
+      ) : null}
     </main>
   );
 }
 
 function Body() {
   const [selectedSection, setSelectedSection] = useState(SECTIONS[0].key);
+  const [personalData, setPersonalData] = useState(personalInfo);
 
   function changeSection(sectionKey) {
     setSelectedSection(sectionKey);
@@ -68,9 +91,9 @@ function Body() {
         selectedSectionObj={
           SECTIONS.filter((section) => section.key === selectedSection)[0]
         }
+        personalData={personalData}
+        setPersonalData={setPersonalData}
       />
-      <PersonalInfo />
-      <Education />
       <Footer />
     </>
   );
