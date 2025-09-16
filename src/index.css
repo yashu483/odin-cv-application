@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;

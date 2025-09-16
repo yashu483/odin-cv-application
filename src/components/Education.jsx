@@ -2,6 +2,7 @@ import { useState } from "react";
 
 class AddEducation {
   constructor(
+    key,
     collegeName = "",
     degree = "",
     startYear = "",
@@ -9,6 +10,7 @@ class AddEducation {
     field = "",
     achievements = ""
   ) {
+    this.key = key;
     this.collegeName = collegeName;
     this.degree = degree;
     this.startYear = startYear;
@@ -21,7 +23,9 @@ class AddEducation {
 const educationalInfo = [];
 
 function Education() {
-  const [educationalData, setEducationalData] = useState(new AddEducation());
+  const [educationalData, setEducationalData] = useState(
+    new AddEducation(educationalInfo.length - 1)
+  );
 
   const handleInput = function handleInput(e) {
     const { name, value } = e.target;
@@ -109,6 +113,7 @@ function Education() {
           Add Education
         </button>
       </form>
+      {educationalInfo.length > 1}
       <button type="button">Next</button>
     </>
   );
