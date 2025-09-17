@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Fredoka", "Roboto", system-ui;
   line-height: 1.5;
   font-weight: 400;
 
@@ -56,4 +56,31 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url("./assets/fonts/Fredoka-Light.woff2") format("woff2"),
+    url("./assets/fonts/Fredoka-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter18pt-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Inter18pt-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Regular.woff") format("woff");
+}
+
+* {
+  font-family: "Inter", "Fredoka", "Roboto", system-ui;
+}
+input,
+textarea {
+  font-family: "Inter", "Fredoka", "Roboto", system-ui;
+  font-size: 1.05em;
 }

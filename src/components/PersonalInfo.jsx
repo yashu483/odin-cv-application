@@ -8,9 +8,9 @@ function PersonalInfo({ personalData, setPersonalData }) {
   }
   return (
     <div className="personal-info">
-      <h2>Personal Information</h2>
-      <form>
-        <div>
+      <h2 className="section-headings">Personal Information</h2>
+      <form className="section-form">
+        <div className="single-input-row">
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
@@ -18,11 +18,12 @@ function PersonalInfo({ personalData, setPersonalData }) {
             name="fullName"
             onChange={handleInput}
             value={personalData.fullName}
+            placeholder="Crazy Developer"
           />
         </div>
 
-        <div>
-          <div>
+        <div className="double-input-row">
+          <div className="input-in-double-input-row">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -30,9 +31,10 @@ function PersonalInfo({ personalData, setPersonalData }) {
               name="email"
               onChange={handleInput}
               value={personalData.email}
+              placeholder="e.g., yourmail@gmail.com"
             />
           </div>
-          <div>
+          <div className="input-in-double-input-row">
             <label htmlFor="phone">Phone</label>
             <input
               type="tel"
@@ -40,10 +42,11 @@ function PersonalInfo({ personalData, setPersonalData }) {
               onChange={handleInput}
               name="phone"
               value={personalData.phone}
+              placeholder="e.g., 123-456-7890"
             />
           </div>
         </div>
-        <div>
+        <div className="single-input-row">
           <label htmlFor="address">Address</label>
           <input
             type="text"
@@ -53,8 +56,8 @@ function PersonalInfo({ personalData, setPersonalData }) {
             value={personalData.address}
           />
         </div>
-        <div>
-          <div>
+        <div className="double-input-row">
+          <div className="input-in-double-input-row">
             <label htmlFor="github">GitHub Link</label>
             <input
               type="url"
@@ -64,7 +67,7 @@ function PersonalInfo({ personalData, setPersonalData }) {
               value={personalData.github}
             />
           </div>
-          <div>
+          <div className="input-in-double-input-row">
             <label htmlFor="linkedIn">LinkedIn Profile Link</label>
             <input
               type="url"
@@ -75,7 +78,7 @@ function PersonalInfo({ personalData, setPersonalData }) {
             />
           </div>
         </div>
-        <div>
+        <div className="single-input-row">
           <label htmlFor="personalSite">Personal Site Link (Optional)</label>
           <input
             type="url"
@@ -85,8 +88,8 @@ function PersonalInfo({ personalData, setPersonalData }) {
             value={personalData.personalSite}
           />
         </div>
-        <div>
-          <label htmlFor="summary">Summary</label>
+        <div className="textarea-box">
+          <label htmlFor="summary">More About Yourself</label>
           <textarea
             name="summary"
             id="summary"
