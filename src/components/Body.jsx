@@ -4,6 +4,7 @@ import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import { Education, AddEducation } from "./Education";
 import { Experience, NewExperience } from "./Experience";
+import { Project, NewProject } from "./Projects";
 
 const personalInfo = {
   fullName: "",
@@ -101,6 +102,9 @@ function Main({
             setExperienceData={setExperienceData}
           />
         );
+      }
+      case "projects": {
+        return <Project />;
       }
       default:
         return null;
