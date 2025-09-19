@@ -5,6 +5,7 @@ import PersonalInfo from "./PersonalInfo";
 import { Education, AddEducation } from "./Education";
 import { Experience, NewExperience } from "./Experience";
 import { Project, NewProject } from "./Projects";
+import OtherInfo from "./OtherInfo";
 
 const personalInfo = {
   fullName: "",
@@ -36,6 +37,8 @@ jobInfo.push(new NewExperience());
 
 const projectInfo = [];
 projectInfo.push(new NewProject());
+
+const otherInfoObj = { skills: [], languages: [], hobbies: [] };
 
 function Header({ selectedSection, changeSection }) {
   return (
@@ -82,6 +85,8 @@ function Main({
   setExperienceData,
   projectData,
   setProjectData,
+  otherInfo,
+  setOtherInfo,
 }) {
   function renderSection() {
     switch (selectedSectionObj.key) {
@@ -113,6 +118,9 @@ function Main({
           <Project projectData={projectData} setProjectData={setProjectData} />
         );
       }
+      case "otherInfo": {
+        return <OtherInfo otherInfo={otherInfo} setOtherInfo={setOtherInfo} />;
+      }
       default:
         return null;
     }
@@ -126,6 +134,7 @@ function Body() {
   const [educationalData, setEducationalData] = useState(educationalInfo);
   const [experienceData, setExperienceData] = useState(jobInfo);
   const [projectData, setProjectData] = useState(projectInfo);
+  const [otherInfo, setOtherInfo] = useState(otherInfoObj);
 
   function changeSection(sectionKey) {
     setSelectedSection(sectionKey);
@@ -145,6 +154,8 @@ function Body() {
         setExperienceData={setExperienceData}
         projectData={projectData}
         setProjectData={setProjectData}
+        otherInfo={otherInfo}
+        setOtherInfo={setOtherInfo}
       />
       <Footer />
     </>
