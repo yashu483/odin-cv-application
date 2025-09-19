@@ -1,6 +1,8 @@
 import { useState } from "react";
+
+// import from component files
 import PersonalInfo from "./PersonalInfo";
-import Education from "./Education";
+import { Education, AddEducation } from "./Education";
 
 const personalInfo = {
   fullName: "",
@@ -29,11 +31,14 @@ const SectionComponents = {
   education: <Education />,
 };
 
+const educationalInfo = [];
+educationalInfo.push(new AddEducation());
+
 function Header({ selectedSection, changeSection }) {
   return (
     <header>
-      <h1>CV / Resume Builder</h1>
-      <nav>
+      <h1 className="elevated">CV / Resume Builder</h1>
+      <nav className="elevated">
         {SECTIONS.map((section) => (
           <button
             key={section.key}
@@ -53,7 +58,7 @@ function Header({ selectedSection, changeSection }) {
 function Footer() {
   return (
     <footer>
-      <nav>
+      <nav className="elevated">
         <button type="button">Previous</button>
         <button type="button">Next</button>
       </nav>
@@ -64,7 +69,13 @@ function Footer() {
   );
 }
 
-function Main({ selectedSectionObj, personalData, setPersonalData }) {
+function Main({
+  selectedSectionObj,
+  personalData,
+  setPersonalData,
+  educationalData,
+  setEducationalData,
+}) {
   function renderSection() {
     switch (selectedSectionObj.key) {
       case "personalInfo":
@@ -75,7 +86,12 @@ function Main({ selectedSectionObj, personalData, setPersonalData }) {
           />
         );
       case "education": {
-        return <Education />;
+        return (
+          <Education
+            educationalData={educationalData}
+            setEducationalData={setEducationalData}
+          />
+        );
       }
       default:
         return null;
@@ -87,6 +103,7 @@ function Main({ selectedSectionObj, personalData, setPersonalData }) {
 function Body() {
   const [selectedSection, setSelectedSection] = useState(SECTIONS[0].key);
   const [personalData, setPersonalData] = useState(personalInfo);
+  const [educationalData, setEducationalData] = useState(educationalInfo);
 
   function changeSection(sectionKey) {
     setSelectedSection(sectionKey);
@@ -100,6 +117,8 @@ function Body() {
         }
         personalData={personalData}
         setPersonalData={setPersonalData}
+        educationalData={educationalData}
+        setEducationalData={setEducationalData}
       />
       <Footer />
     </>

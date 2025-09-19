@@ -1,4 +1,5 @@
-import { useState } from "react";
+import editIcon from "./../assets/icons/pencil.png";
+import deleteIcon from "./../assets/icons/bin.png";
 
 class AddEducation {
   constructor(
@@ -7,7 +8,7 @@ class AddEducation {
     degree = "",
     startYear = "",
     graduatingYear = "",
-    field = "",
+    location = "",
     achievements = ""
   ) {
     this.key = key;
@@ -15,108 +16,228 @@ class AddEducation {
     this.degree = degree;
     this.startYear = startYear;
     this.graduatingYear = graduatingYear;
-    this.field = field;
+    this.location = location;
     this.achievements = achievements;
+    this.isSelected = true;
+    this.isAdded = false;
   }
 }
 
-const educationalInfo = [];
-
-function Education() {
-  const [educationalData, setEducationalData] = useState(
-    new AddEducation(educationalInfo.length - 1)
+// EducationCard() is used to show a single college information
+function EducationCard({ educationalData }) {
+  return (
+    <div className="educational-card">
+      <div className="educational-detail">
+        <h3 className="card-headings">{`${educationalData.degree}, ${educationalData.collegeName}`}</h3>
+        <p>{`${educationalData.startYear} - ${educationalData.graduatingYear}   ${educationalData.location}`}</p>
+      </div>
+      <div className="education-button-container">
+        <button aria-label="Edit">
+          <img
+            src={editIcon}
+            alt="Edit Button"
+            className="education-edit-button"
+          />
+        </button>
+        <button aria-label="Delete">
+          <img
+            src={deleteIcon}
+            alt="Delete Button"
+            className="education-delete-button"
+          />
+        </button>
+      </div>
+    </div>
   );
+}
+
+// ShowEducation will  renders each college and education
+function ShowEducation({ educationalArray }) {
+  return (
+    <>
+      {educationalArray.map((obj) => {
+        if (obj.isAdded) {
+          return <EducationCard educationalData={obj} />;
+        } else {
+          return null;
+        }
+      })}
+    </>
+  );
+}
+function Education({ educationalData, setEducationalData }) {
+  let currentlyEditingEducationIndex;
+  const currentlyEditingEducationObj = educationalData.filter((item, index) => {
+    currentlyEditingEducationIndex = index;
+    return item.isSelected === true;
+  })[0];
+
+  const currentlyEditingEducation = { ...currentlyEditingEducationObj };
 
   const handleInput = function handleInput(e) {
     const { name, value } = e.target;
-    setEducationalData({
-      ...educationalData,
+
+    const educationWithNewValue = {
+      ...currentlyEditingEducation,
       [name]: value,
-    });
+    };
+    const newEducationArray = educationalData.map((obj) => ({ ...obj }));
+    newEducationArray[currentlyEditingEducationIndex] = educationWithNewValue;
+
+    setEducationalData(newEducationArray);
   };
+
+  const addButtonHandler = function addButtonHandler() {
+    currentlyEditingEducation.isSelected = false;
+    currentlyEditingEducation.isAdded = true;
+    const newEducationArray = educationalData.map((obj, index) => {
+      return index === currentlyEditingEducationIndex
+        ? currentlyEditingEducation
+        : { ...obj };
+    });
+    newEducationArray.push(new AddEducation());
+    setEducationalData(newEducationArray);
+  };
+
+  function renderTotalAddedEducation() {
+    const totalAddedEducation = educationalData.filter(
+      (item) => item.isAdded
+    ).length;
+
+    return totalAddedEducation === 0 ? (
+      <>
+        <h2 className="section-headings">Your Education</h2>
+        <p className="section-headings">No Education Added</p>
+      </>
+    ) : (
+      <>
+        <h2 className="section-headings">Your Education</h2>
+        <ShowEducation educationalArray={educationalData} />
+      </>
+    );
+  }
   return (
     <>
-      <form>
-        <div>
-          <div>
-            <label htmlFor="collegeName">
-              University / Institution / College
+      <div className="main-section-component">
+        <h2 className="section-headings">Education</h2>
+        <form id="educational-form" className="section-form">
+          <div className="double-input-row">
+            <div className="input-in-double-input-row">
+              <label htmlFor="collegeName">
+                University / Institution / College
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="text"
+                id="collegeName"
+                name="collegeName"
+                value={currentlyEditingEducation.collegeName}
+                onChange={handleInput}
+                required
+              />
+            </div>
+            <div className="input-in-double-input-row">
+              <label htmlFor="degree">
+                Degree / Program / Course
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="text"
+                id="degree"
+                name="degree"
+                value={currentlyEditingEducation.degree}
+                onChange={handleInput}
+                required
+              />
+            </div>
+          </div>
+          <div className="double-input-row">
+            <div className="input-in-double-input-row">
+              <label htmlFor="startYear">
+                Starting Year
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="month"
+                id="startYear"
+                name="startYear"
+                value={currentlyEditingEducation.startYear}
+                onChange={handleInput}
+                required
+              />
+            </div>
+            <div className="input-in-double-input-row">
+              <label htmlFor="graduatingYear">
+                Graduating Year
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="month"
+                id="graduatingYear"
+                name="graduatingYear"
+                value={currentlyEditingEducation.graduatingYear}
+                onChange={handleInput}
+                required
+              />
+            </div>
+          </div>
+          <div className="single-input-row">
+            <label htmlFor="field">
+              Location
+              <span className="aria-label" aria-label="required">
+                *
+              </span>
             </label>
             <input
               type="text"
-              id="collegeName"
-              name="collegeName"
-              value={educationalData.collegeName}
+              id="location"
+              name="location"
+              value={currentlyEditingEducation.location}
               onChange={handleInput}
+              required
             />
           </div>
-          <div>
-            <label htmlFor="degree">Degree / Program / Course</label>
+          <div className="single-input-row">
+            <label htmlFor="achievements">Achievements (Optional)</label>
             <input
               type="text"
-              id="degree"
-              name="degree"
-              value={educationalData.degree}
+              id="achievements"
+              value={currentlyEditingEducation.achievements}
+              name="achievements"
               onChange={handleInput}
             />
           </div>
-        </div>
-        <div>
-          <div>
-            <label htmlFor="startYear">Starting Year</label>
-            <input
-              type="month"
-              id="startYear"
-              name="startYear"
-              value={educationalData.startYear}
-              onChange={handleInput}
-            />
-          </div>
-          <div>
-            <label htmlFor="graduatingYear">Graduating Year</label>
-            <input
-              type="month"
-              id="graduatingYear"
-              name="graduatingYear"
-              value={educationalData.graduatingYear}
-              onChange={handleInput}
-            />
-          </div>
-        </div>
-        <div>
-          <label htmlFor="field">Field of Study</label>
-          <input
-            type="text"
-            id="field"
-            name="field"
-            value={educationalData.field}
-            onChange={handleInput}
-          />
-        </div>
-        <div>
-          <label htmlFor="achievements">Achievements</label>
-          <input
-            type="text"
-            id="achievements"
-            value={educationalData.achievements}
-            name="achievements"
-            onChange={handleInput}
-          />
-        </div>
-        <button
-          type="submit"
-          key={"educationSubmit"}
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Add Education
-        </button>
-      </form>
-      {educationalInfo.length > 1}
-      <button type="button">Next</button>
+          <button
+            type="submit"
+            key={"educationSubmit"}
+            onClick={(e) => {
+              e.preventDefault();
+              const educationalForm =
+                document.querySelector("#educational-form");
+              educationalForm.reportValidity();
+              if (educationalForm.checkValidity()) {
+                addButtonHandler();
+              }
+            }}
+            className="education-add-button"
+          >
+            ADD
+          </button>
+        </form>
+      </div>
+      <div className="main-section-component card-container">
+        {renderTotalAddedEducation()}
+      </div>
     </>
   );
 }
 
-export default Education;
+export { Education, AddEducation };

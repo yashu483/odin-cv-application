@@ -7,11 +7,16 @@ function PersonalInfo({ personalData, setPersonalData }) {
     });
   }
   return (
-    <div className="personal-info">
+    <div className="main-section-component elevated">
       <h2 className="section-headings">Personal Information</h2>
       <form className="section-form">
         <div className="single-input-row">
-          <label htmlFor="fullName">Full Name</label>
+          <label htmlFor="fullName">
+            Full Name
+            <span className="aria-label" aria-label="required">
+              *
+            </span>
+          </label>
           <input
             type="text"
             id="fullName"
@@ -19,12 +24,18 @@ function PersonalInfo({ personalData, setPersonalData }) {
             onChange={handleInput}
             value={personalData.fullName}
             placeholder="Crazy Developer"
+            required
           />
         </div>
 
         <div className="double-input-row">
           <div className="input-in-double-input-row">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              Email
+              <span className="aria-label" aria-label="required">
+                *
+              </span>
+            </label>
             <input
               type="email"
               id="email"
@@ -32,10 +43,16 @@ function PersonalInfo({ personalData, setPersonalData }) {
               onChange={handleInput}
               value={personalData.email}
               placeholder="e.g., yourmail@gmail.com"
+              required
             />
           </div>
           <div className="input-in-double-input-row">
-            <label htmlFor="phone">Phone</label>
+            <label htmlFor="phone">
+              Phone
+              <span className="aria-label" aria-label="required">
+                *
+              </span>
+            </label>
             <input
               type="tel"
               id="phone"
@@ -43,22 +60,30 @@ function PersonalInfo({ personalData, setPersonalData }) {
               name="phone"
               value={personalData.phone}
               placeholder="e.g., 123-456-7890"
+              required
             />
           </div>
         </div>
         <div className="single-input-row">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">
+            Address
+            <span className="aria-label" aria-label="required">
+              *
+            </span>
+          </label>
           <input
             type="text"
             id="address"
             name="address"
             onChange={handleInput}
             value={personalData.address}
+            placeholder="e.g., At. Somewhere, Earth"
+            required
           />
         </div>
         <div className="double-input-row">
           <div className="input-in-double-input-row">
-            <label htmlFor="github">GitHub Link</label>
+            <label htmlFor="github">GitHub Link (Optional)</label>
             <input
               type="url"
               id="github"
@@ -68,7 +93,7 @@ function PersonalInfo({ personalData, setPersonalData }) {
             />
           </div>
           <div className="input-in-double-input-row">
-            <label htmlFor="linkedIn">LinkedIn Profile Link</label>
+            <label htmlFor="linkedIn">LinkedIn Profile Link (Optional)</label>
             <input
               type="url"
               id="linkedIn"
