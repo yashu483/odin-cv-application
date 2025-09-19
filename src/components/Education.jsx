@@ -70,7 +70,6 @@ function EducationCard({
       </div>
       <div className="education-button-container">
         <button
-          aria-label="Edit"
           id={educationalData.id}
           onClick={editButtonHandler}
           style={{ backgroundImage: `url(${editIcon})` }}
@@ -78,7 +77,6 @@ function EducationCard({
           Edit
         </button>
         <button
-          aria-label="Delete"
           id={educationalData.id}
           onClick={deleteButtonHandler}
           style={{ backgroundImage: `url(${deleteIcon})` }}

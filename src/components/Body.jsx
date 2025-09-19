@@ -3,6 +3,7 @@ import { useState } from "react";
 // import from component files
 import PersonalInfo from "./PersonalInfo";
 import { Education, AddEducation } from "./Education";
+import { Experience, NewExperience } from "./Experience";
 
 const personalInfo = {
   fullName: "",
@@ -29,10 +30,14 @@ const SECTIONS = [
 const SectionComponents = {
   personalInfo: <PersonalInfo personalInfo={personalInfo} />,
   education: <Education />,
+  experience: <Experience />,
 };
 
 const educationalInfo = [];
 educationalInfo.push(new AddEducation());
+
+const jobInfo = [];
+jobInfo.push(new NewExperience());
 
 function Header({ selectedSection, changeSection }) {
   return (
@@ -75,6 +80,8 @@ function Main({
   setPersonalData,
   educationalData,
   setEducationalData,
+  experienceData,
+  setExperienceData,
 }) {
   function renderSection() {
     switch (selectedSectionObj.key) {
@@ -93,6 +100,14 @@ function Main({
           />
         );
       }
+      case "experiences": {
+        return (
+          <Experience
+            experienceData={experienceData}
+            setExperienceData={setExperienceData}
+          />
+        );
+      }
       default:
         return null;
     }
@@ -104,6 +119,7 @@ function Body() {
   const [selectedSection, setSelectedSection] = useState(SECTIONS[0].key);
   const [personalData, setPersonalData] = useState(personalInfo);
   const [educationalData, setEducationalData] = useState(educationalInfo);
+  const [experienceData, setExperienceData] = useState(jobInfo);
 
   function changeSection(sectionKey) {
     setSelectedSection(sectionKey);
@@ -119,6 +135,8 @@ function Body() {
         setPersonalData={setPersonalData}
         educationalData={educationalData}
         setEducationalData={setEducationalData}
+        experienceData={experienceData}
+        setExperienceData={setExperienceData}
       />
       <Footer />
     </>
