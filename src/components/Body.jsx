@@ -21,17 +21,11 @@ const SECTIONS = [
     key: "personalInfo",
   },
   { name: "Education", key: "education" },
-  { name: "Experiences", key: "experiences" },
+  { name: "Experiences", key: "experience" },
   { name: "Projects", key: "projects" },
   { name: "Other Information", key: "otherInfo" },
   { name: "Preview", key: "preview" },
 ];
-
-const SectionComponents = {
-  personalInfo: <PersonalInfo personalInfo={personalInfo} />,
-  education: <Education />,
-  experience: <Experience />,
-};
 
 const educationalInfo = [];
 educationalInfo.push(new AddEducation());
@@ -100,7 +94,7 @@ function Main({
           />
         );
       }
-      case "experiences": {
+      case "experience": {
         return (
           <Experience
             experienceData={experienceData}

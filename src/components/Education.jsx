@@ -89,7 +89,10 @@ function EducationCard({
 }
 
 // ShowEducation will  renders each college and education
-function ShowEducation({ educationalArray, setEducationalData }) {
+const ShowEducation = function ShowEducation({
+  educationalArray,
+  setEducationalData,
+}) {
   return (
     <>
       {educationalArray.map((obj) => {
@@ -108,11 +111,13 @@ function ShowEducation({ educationalArray, setEducationalData }) {
       })}
     </>
   );
-}
+};
 function Education({ educationalData, setEducationalData }) {
   let currentlyEditingEducationIndex;
   const currentlyEditingEducationObj = educationalData.filter((item, index) => {
-    currentlyEditingEducationIndex = index;
+    if (item.isSelected) {
+      currentlyEditingEducationIndex = index;
+    }
     return item.isSelected === true;
   })[0];
 

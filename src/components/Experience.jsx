@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 class NewExperience {
@@ -24,17 +23,18 @@ class NewExperience {
 
 const JobCard = function JobCard({
   experience,
-  experienceData,
+  experienceArray,
   setExperienceData,
 }) {
   const editButtonHandler = function editButtonHandler(e) {
     const cardId = e.target.id;
-    const newExperienceArray = experienceData.map((obj) => {
+    const newExperienceArray = experienceArray.map((obj) => {
       const newObj = { ...obj };
-      if (cardId === newObj.id) {
+      if (cardId === obj.id) {
         newObj.isSelected = true;
+        return { ...newObj };
       } else {
-        if (!newObj.isAdded) {
+        if (!obj.isAdded) {
           return null;
         }
 
@@ -51,14 +51,14 @@ const JobCard = function JobCard({
   };
 
   const deleteButtonHandler = function deleteButtonHandler(e) {
-    const newExperienceArray = experienceData
+    const newExperienceArray = experienceArray
       .filter((obj) => obj.id !== e.target.id)
       .map((obj) => ({ ...obj }));
     setExperienceData(newExperienceArray);
   };
   return (
-    <div key={experience.id}>
-      <div>
+    <div key={experience.id} className="educational-card">
+      <div className="educational-detail">
         <h3 className="card-headings">{`${experience.jobRole} - ${experience.companyName}`}</h3>
         <p>{`${experience.startDate} to ${experience.endDate} - ${experience.location}`}</p>
       </div>
@@ -76,17 +76,18 @@ const JobCard = function JobCard({
   );
 };
 const ShowExperience = function ShowExperience({
-  experienceData,
+  experienceArray,
   setExperienceData,
 }) {
   return (
     <>
-      {experienceData.map((obj) => {
+      {experienceArray.map((obj) => {
         if (obj.isAdded) {
           return (
             <JobCard
+              key={obj.id}
               experience={obj}
-              experienceData={experienceData}
+              experienceArray={experienceArray}
               setExperienceData={setExperienceData}
             />
           );
@@ -100,8 +101,10 @@ const ShowExperience = function ShowExperience({
 
 function Experience({ experienceData, setExperienceData }) {
   let currentlyEditingExperienceIndex;
-  const currentlyEditingExperienceObj = experienceData.map((obj, index) => {
-    currentlyEditingExperienceIndex = index;
+  const currentlyEditingExperienceObj = experienceData.filter((obj, index) => {
+    if (obj.isSelected) {
+      currentlyEditingExperienceIndex = index;
+    }
     return obj.isSelected === true;
   })[0];
 
@@ -113,7 +116,7 @@ function Experience({ experienceData, setExperienceData }) {
     const { name, value } = e.target;
 
     const experienceWithNewValue = {
-      currentlyEditingExperience,
+      ...currentlyEditingExperience,
       [name]: value,
     };
 
@@ -122,6 +125,38 @@ function Experience({ experienceData, setExperienceData }) {
       experienceWithNewValue;
     setExperienceData(newExperienceArray);
   }
+
+  function renderExperiences() {
+    const totalAddedExperience = experienceData.filter(
+      (obj) => obj.isAdded
+    ).length;
+    return totalAddedExperience === 0 ? (
+      <>
+        <h2 className="section-headings">Your Career</h2>
+        <p className="section-headings">No previous experience added.</p>
+      </>
+    ) : (
+      <>
+        <h2 className="section-headings">Your Career</h2>
+        <ShowExperience
+          experienceArray={experienceData}
+          setExperienceData={setExperienceData}
+        />
+      </>
+    );
+  }
+
+  const addButtonHandler = function addButtonHandler() {
+    currentlyEditingExperience.isSelected = false;
+    currentlyEditingExperience.isAdded = true;
+    const newExperienceArray = experienceData.map((obj, index) => {
+      return index === currentlyEditingExperienceIndex
+        ? currentlyEditingExperience
+        : { ...obj };
+    });
+    newExperienceArray.push(new NewExperience());
+    setExperienceData(newExperienceArray);
+  };
   return (
     <>
       <div className="main-section-component">
@@ -129,40 +164,85 @@ function Experience({ experienceData, setExperienceData }) {
         <form className="section-form" id="experience-form">
           <div className="double-input-row">
             <div className="input-in-double-input-row">
-              <label htmlFor="companyName">Company</label>
-              <input type="text" name="companyName" id="companyName" />
+              <label htmlFor="companyName">
+                Company
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="text"
+                name="companyName"
+                id="companyName"
+                onChange={handleInput}
+                required
+                value={currentlyEditingExperience.companyName}
+              />
             </div>
             <div className="input-in-double-input-row">
-              <label htmlFor="jobRole">Job Role</label>
-              <input type="text" id="jobRole" name="jobRole" />
+              <label htmlFor="jobRole">
+                Job Role
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
+              <input
+                type="text"
+                id="jobRole"
+                name="jobRole"
+                onChange={handleInput}
+                value={currentlyEditingExperience.jobRole}
+                required
+              />
             </div>
           </div>
           <div className="single-input-row">
-            <label htmlFor="location">Location</label>
+            <label htmlFor="location">
+              Location
+              <span className="aria-label" aria-label="required">
+                *
+              </span>
+            </label>
             <input
               type="text"
               name="location"
               id="location"
               onChange={handleInput}
+              required
+              value={currentlyEditingExperience.location}
             />
           </div>
           <div className="double-input-row">
             <div className="input-in-double-input-row">
-              <label htmlFor="startDate">Start Date</label>
+              <label htmlFor="startDate">
+                Start Date
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
               <input
-                type="text"
+                type="month"
                 name="startDate"
                 id="startDate"
                 onChange={handleInput}
+                required
+                value={currentlyEditingExperience.startDate}
               />
             </div>
             <div className="input-in-double-input-row">
-              <label htmlFor="endDate">End Date</label>
+              <label htmlFor="endDate">
+                End Date
+                <span className="aria-label" aria-label="required">
+                  *
+                </span>
+              </label>
               <input
-                type="text"
+                type="month"
                 name="endDate"
                 id="endDate"
                 onChange={handleInput}
+                value={currentlyEditingExperience.endDate}
+                required
               />
             </div>
           </div>
@@ -172,12 +252,28 @@ function Experience({ experienceData, setExperienceData }) {
               name="jobDescription"
               id="jobDescription"
               onChange={handleInput}
+              value={currentlyEditingExperience.jobDescription}
             ></textarea>
           </div>
-          <button type="button" className="education-add-button">
+          <button
+            type="submit"
+            className="education-add-button"
+            onClick={(e) => {
+              e.preventDefault();
+              const experienceForm = document.querySelector("#experience-form");
+              experienceForm.reportValidity();
+
+              if (experienceForm.checkValidity()) {
+                addButtonHandler();
+              }
+            }}
+          >
             Add
           </button>
         </form>
+      </div>
+      <div className="main-section-component card-container">
+        {renderExperiences()}
       </div>
     </>
   );

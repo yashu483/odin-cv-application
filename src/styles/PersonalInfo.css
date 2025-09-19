@@ -67,11 +67,12 @@ input {
   text-align: start;
 }
 
-.textarea-box > textarea {
+textarea {
   height: 200px;
   resize: none;
   border-radius: 5px;
   border: 1px solid gray;
+  padding: 10px;
 }
 
 /* form validation rules  */
