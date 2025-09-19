@@ -65,10 +65,20 @@ const JobCard = function JobCard({
 
       {/* using education-button-container class for below div to apply same styles */}
       <div className="education-button-container">
-        <button type="button" id={experience.id} onClick={editButtonHandler}>
+        <button
+          type="button"
+          id={experience.id}
+          onClick={editButtonHandler}
+          className="card-edit-button"
+        >
           Edit
         </button>
-        <button type="button" id={experience.id} onClick={deleteButtonHandler}>
+        <button
+          type="button"
+          id={experience.id}
+          onClick={deleteButtonHandler}
+          className="card-delete-button"
+        >
           Delete
         </button>
       </div>

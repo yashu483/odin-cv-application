@@ -73,6 +73,7 @@ function EducationCard({
           id={educationalData.id}
           onClick={editButtonHandler}
           style={{ backgroundImage: `url(${editIcon})` }}
+          className="card-edit-button"
         >
           Edit
         </button>
@@ -80,6 +81,7 @@ function EducationCard({
           id={educationalData.id}
           onClick={deleteButtonHandler}
           style={{ backgroundImage: `url(${deleteIcon})` }}
+          className="card-delete-button"
         >
           Delete
         </button>

@@ -34,6 +34,9 @@ educationalInfo.push(new AddEducation());
 const jobInfo = [];
 jobInfo.push(new NewExperience());
 
+const projectInfo = [];
+projectInfo.push(new NewProject());
+
 function Header({ selectedSection, changeSection }) {
   return (
     <header>
@@ -77,6 +80,8 @@ function Main({
   setEducationalData,
   experienceData,
   setExperienceData,
+  projectData,
+  setProjectData,
 }) {
   function renderSection() {
     switch (selectedSectionObj.key) {
@@ -104,7 +109,9 @@ function Main({
         );
       }
       case "projects": {
-        return <Project />;
+        return (
+          <Project projectData={projectData} setProjectData={setProjectData} />
+        );
       }
       default:
         return null;
@@ -118,6 +125,7 @@ function Body() {
   const [personalData, setPersonalData] = useState(personalInfo);
   const [educationalData, setEducationalData] = useState(educationalInfo);
   const [experienceData, setExperienceData] = useState(jobInfo);
+  const [projectData, setProjectData] = useState(projectInfo);
 
   function changeSection(sectionKey) {
     setSelectedSection(sectionKey);
@@ -135,6 +143,8 @@ function Body() {
         setEducationalData={setEducationalData}
         experienceData={experienceData}
         setExperienceData={setExperienceData}
+        projectData={projectData}
+        setProjectData={setProjectData}
       />
       <Footer />
     </>
