@@ -1,6 +1,7 @@
 import Body from "./components/Body";
 import "./styles/Body.css";
 import "./styles/PersonalInfo.css";
+import "./styles/Education.css";
 import "./App.css";
 
 function App() {

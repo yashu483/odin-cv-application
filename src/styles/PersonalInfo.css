@@ -9,13 +9,14 @@ input {
   flex-direction: column;
   gap: 1rem;
 }
-.personal-info {
+.main-section-component {
   width: 100%;
   border: 3px solid blue;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   padding: 1rem 3rem;
+  padding-bottom: 2rem;
 }
 
 .section-headings {
@@ -75,10 +76,11 @@ input {
 
 /* form validation rules  */
 
-input:invalid {
-  border: 2px solid red;
+.aria-label {
+  color: red;
+  font-size: 1.1em;
 }
 
-input:valid {
-  border: 2px solid green;
+input:placeholder-shown {
+  border: 1px solid gray !important;
 }

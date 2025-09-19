@@ -1,0 +1,49 @@
+.educational-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 3px solid purple;
+  padding: 10px 1rem;
+  padding-right: 3rem;
+  border-radius: 15px;
+  background-color: yellow;
+}
+.education-edit-button,
+.education-delete-button {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 5px 10px;
+}
+
+.education-edit-button {
+  background-image: url("./../assets/icons/pencil.png") !important;
+}
+.card-container {
+  gap: 1.5rem;
+}
+
+.card-headings {
+  text-align: start;
+  font-weight: 900 !important;
+  font-size: 1.3em;
+}
+
+.education-button-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.education-button-container > button {
+  /* padding: 5px; */
+  border: 2px solid black;
+}
+
+.education-add-button {
+  border: 2px solid gray;
+  font-weight: 800;
+  background-color: skyblue;
+}
+
+.educational-detail > p {
+  text-align: start;
+}
