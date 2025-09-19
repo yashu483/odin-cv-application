@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+
 import editIcon from "./../assets/icons/pencil.png";
 import deleteIcon from "./../assets/icons/bin.png";
-
 class AddEducation {
   constructor(
     key,
@@ -20,31 +21,69 @@ class AddEducation {
     this.achievements = achievements;
     this.isSelected = true;
     this.isAdded = false;
+    this.id = uuidv4();
   }
 }
 
 // EducationCard() is used to show a single college information
-function EducationCard({ educationalData }) {
+function EducationCard({
+  educationalData,
+  educationalArray,
+  setEducationalData,
+}) {
+  const editButtonHandler = function editButtonHandler(e) {
+    console.log(e.target);
+    const cardId = e.target.id;
+    const newEducationArray = educationalArray.map((obj) => {
+      const newObj = { ...obj };
+      if (cardId === obj.id) {
+        newObj.isSelected = true;
+        return { ...newObj };
+      } else {
+        if (!obj.isAdded) {
+          return null;
+        }
+
+        newObj.isSelected = false;
+        return { ...newObj };
+      }
+    });
+
+    const removeNullFromArray = newEducationArray.filter(
+      (item) => item !== null
+    );
+    setEducationalData(removeNullFromArray);
+  };
+
+  const deleteButtonHandler = function deleteButtonHandler(e) {
+    const newEducationArray = educationalArray
+      .filter((obj) => obj.id !== e.target.id)
+      .map((obj) => ({ ...obj }));
+
+    setEducationalData(newEducationArray);
+  };
   return (
-    <div className="educational-card">
+    <div className="educational-card" key={educationalData.id}>
       <div className="educational-detail">
-        <h3 className="card-headings">{`${educationalData.degree}, ${educationalData.collegeName}`}</h3>
-        <p>{`${educationalData.startYear} - ${educationalData.graduatingYear}   ${educationalData.location}`}</p>
+        <h3 className="card-headings">{`${educationalData.degree} - ${educationalData.collegeName}`}</h3>
+        <p>{`${educationalData.startYear} to ${educationalData.graduatingYear}  at  ${educationalData.location}`}</p>
       </div>
       <div className="education-button-container">
-        <button aria-label="Edit">
-          <img
-            src={editIcon}
-            alt="Edit Button"
-            className="education-edit-button"
-          />
+        <button
+          aria-label="Edit"
+          id={educationalData.id}
+          onClick={editButtonHandler}
+          style={{ backgroundImage: `url(${editIcon})` }}
+        >
+          Edit
         </button>
-        <button aria-label="Delete">
-          <img
-            src={deleteIcon}
-            alt="Delete Button"
-            className="education-delete-button"
-          />
+        <button
+          aria-label="Delete"
+          id={educationalData.id}
+          onClick={deleteButtonHandler}
+          style={{ backgroundImage: `url(${deleteIcon})` }}
+        >
+          Delete
         </button>
       </div>
     </div>
@@ -52,12 +91,19 @@ function EducationCard({ educationalData }) {
 }
 
 // ShowEducation will  renders each college and education
-function ShowEducation({ educationalArray }) {
+function ShowEducation({ educationalArray, setEducationalData }) {
   return (
     <>
       {educationalArray.map((obj) => {
         if (obj.isAdded) {
-          return <EducationCard educationalData={obj} />;
+          return (
+            <EducationCard
+              educationalData={obj}
+              educationalArray={educationalArray}
+              setEducationalData={setEducationalData}
+              key={obj.id}
+            />
+          );
         } else {
           return null;
         }
@@ -112,7 +158,10 @@ function Education({ educationalData, setEducationalData }) {
     ) : (
       <>
         <h2 className="section-headings">Your Education</h2>
-        <ShowEducation educationalArray={educationalData} />
+        <ShowEducation
+          educationalArray={educationalData}
+          setEducationalData={setEducationalData}
+        />
       </>
     );
   }
