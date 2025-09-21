@@ -7,12 +7,15 @@ import { Education, AddEducation } from "./Education";
 import { Experience, NewExperience } from "./Experience";
 import { Project, NewProject } from "./Projects";
 import { OtherInfo } from "./OtherInfo";
+import Preview from "./Preview";
 
 console.log(uuidv4().length);
 console.log(uuidv4().length);
 
 const personalInfo = {
   fullName: "",
+  profilePic: "",
+  profilePicUrl: "",
   email: "",
   phone: "",
   address: "",
@@ -127,6 +130,17 @@ function Main({
       }
       case "otherInfo": {
         return <OtherInfo otherInfo={otherInfo} setOtherInfo={setOtherInfo} />;
+      }
+      case "preview": {
+        return (
+          <Preview
+            personalData={personalData}
+            educationalData={educationalData}
+            experienceData={experienceData}
+            projectData={projectData}
+            otherInfo={otherInfo}
+          />
+        );
       }
       default:
         return null;

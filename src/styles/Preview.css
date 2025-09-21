@@ -1,0 +1,34 @@
+.download-button {
+  border: 2px solid gray;
+  background-color: greenyellow;
+  font-size: 1.2em;
+  font-weight: 900;
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: 265px 1fr;
+  width: 210mm;
+  min-height: 297mm;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* resume left section */
+.resume-left-section {
+  padding: 10px;
+  background-color: oklch(37.9% 0.146 265.522);
+  /* background-color: oklch(42.4% 0.199 265.638); */
+}
+
+/* resume right section */
+.resume-right-section {
+}
+.main-section-component:has(.preview) {
+  align-items: center;
+  background-color: rgb(244, 246, 249);
+}
+
+.main-section-component:has(.preview) > h2 {
+  align-self: flex-start;
+}

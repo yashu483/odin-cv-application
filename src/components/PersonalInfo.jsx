@@ -1,3 +1,5 @@
+import image from "./../assets/icons/image.png";
+
 function PersonalInfo({ personalData, setPersonalData }) {
   function handleInput(e) {
     const { name, value } = e.target;
@@ -6,10 +8,52 @@ function PersonalInfo({ personalData, setPersonalData }) {
       [name]: value,
     });
   }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]; // Get the selected file
+    const { name, value } = e.target;
+    if (file) {
+      // Create a preview URL for the image
+      const imageUrl = URL.createObjectURL(file);
+      setPersonalData({
+        ...personalData,
+        profilePicUrl: imageUrl,
+        [name]: value,
+      });
+    }
+  };
   return (
     <div className="main-section-component elevated">
       <h2 className="section-headings">Personal Information</h2>
       <form className="section-form">
+        <div className="profile-pic-image-row">
+          <div className="profile-pic-input-row">
+            <p>Profile Picture</p>
+            <label htmlFor="profilePic">
+              <img src={image} alt="Image Submit Icon" className="image-plus" />
+              Choose An Image
+            </label>
+            <input
+              style={{ display: "none" }}
+              type="file"
+              accept="image/*"
+              id="profilePic"
+              name="profilePic"
+              onChange={handleImageChange}
+            />
+          </div>
+          <div>
+            {personalData.profilePic ? (
+              <img
+                src={personalData.profilePicUrl}
+                alt="Profile Pic Preview"
+                className="profile-pic-preview"
+              />
+            ) : (
+              <div className="profile-pic-preview-div">Profile Pic</div>
+            )}
+          </div>
+        </div>
+
         <div className="single-input-row">
           <label htmlFor="fullName">
             Full Name

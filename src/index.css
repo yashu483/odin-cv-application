@@ -59,21 +59,17 @@ button:focus-visible {
 
 @font-face {
   font-family: "Fredoka";
-  src: url("./assets/fonts/Fredoka-Light.woff2") format("woff2"),
-    url("./assets/fonts/Fredoka-Light.woff") format("woff");
+  src: url("./assets/fonts/Fredoka-Variable.ttf");
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("./assets/fonts/Inter18pt-Regular.woff2") format("woff2"),
-    url("./assets/fonts/Inter18pt-Regular.woff") format("woff");
-  font-weight: 900;
+  src: url("./assets/fonts/Inter-Variable.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Roboto";
-  src: url("./assets/fonts/Roboto-Regular.woff2") format("woff2"),
-    url("./assets/fonts/Roboto-Regular.woff") format("woff");
+  src: url("./assets/fonts/Roboto-Variable.ttf") format("truetype");
 }
 
 * {
@@ -88,4 +84,8 @@ textarea {
 /* common styles */
 .elevated {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+input {
+  border: 1px solid #e2e8f0;
+  outline: none;
 }

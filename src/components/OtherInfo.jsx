@@ -76,6 +76,7 @@ const OtherInfoCategory = function OtherInfoCategory({
                   currentInfoValue={item}
                   otherInfo={otherInfo}
                   setOtherInfo={setOtherInfo}
+                  key={item}
                 />
               );
             }

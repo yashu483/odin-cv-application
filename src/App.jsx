@@ -4,6 +4,7 @@ import "./styles/PersonalInfo.css";
 import "./styles/Education.css";
 import "./styles/Projects.css";
 import "./styles/OtherInfo.css";
+import "./styles/Preview.css";
 import "./App.css";
 
 function App() {
