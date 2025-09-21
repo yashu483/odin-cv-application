@@ -3,6 +3,7 @@ import "./styles/Body.css";
 import "./styles/PersonalInfo.css";
 import "./styles/Education.css";
 import "./styles/Projects.css";
+import "./styles/OtherInfo.css";
 import "./App.css";
 
 function App() {

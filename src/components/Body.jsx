@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // import from component files
 import PersonalInfo from "./PersonalInfo";
 import { Education, AddEducation } from "./Education";
 import { Experience, NewExperience } from "./Experience";
 import { Project, NewProject } from "./Projects";
-import OtherInfo from "./OtherInfo";
+import { OtherInfo } from "./OtherInfo";
+
+console.log(uuidv4().length);
+console.log(uuidv4().length);
 
 const personalInfo = {
   fullName: "",
@@ -37,8 +41,11 @@ jobInfo.push(new NewExperience());
 
 const projectInfo = [];
 projectInfo.push(new NewProject());
-
-const otherInfoObj = { skills: [], languages: [], hobbies: [] };
+const otherInfoObj = {
+  skills: [""],
+  languages: [""],
+  hobbies: [""],
+};
 
 function Header({ selectedSection, changeSection }) {
   return (
