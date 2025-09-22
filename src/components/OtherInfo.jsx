@@ -49,6 +49,8 @@ const OtherInfoCategory = function OtherInfoCategory({
   const lastArrayIndex = otherInfoCategoryArray.length - 1;
   const capitalizeCategoryName = function capitalizeCategoryName(name) {
     switch (name) {
+      case "technicalSkills":
+        return "Technical Skills";
       case "skills":
         return "Skills";
       case "languages":
@@ -145,7 +147,30 @@ function OtherInfo({ otherInfo, setOtherInfo }) {
         <form className="section-form">
           <div className="other-info-container">
             <div className="other-info-input-row">
-              <label htmlFor="skills">Skills</label>
+              <label htmlFor="technicalSkills">Technical Skills</label>
+              <input
+                type="text"
+                name="technicalSkills"
+                id="technicalSkills"
+                onChange={handleInput}
+                value={
+                  otherInfo.technicalSkills[
+                    otherInfo.technicalSkills.length - 1
+                  ]
+                }
+              />
+            </div>
+            <button
+              type="button"
+              id="technicalSkills"
+              onClick={addButtonHandler}
+            >
+              Add
+            </button>
+          </div>
+          <div className="other-info-container">
+            <div className="other-info-input-row">
+              <label htmlFor="skills">Soft/ Personal Skills</label>
               <input
                 type="text"
                 name="skills"

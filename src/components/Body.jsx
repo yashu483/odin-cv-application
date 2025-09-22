@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 // import from component files
 import PersonalInfo from "./PersonalInfo";
@@ -9,13 +8,10 @@ import { Project, NewProject } from "./Projects";
 import { OtherInfo } from "./OtherInfo";
 import Preview from "./Preview";
 
-console.log(uuidv4().length);
-console.log(uuidv4().length);
-
 const personalInfo = {
   fullName: "",
   profilePic: "",
-  profilePicUrl: "",
+  profilePicUrl: null,
   email: "",
   phone: "",
   address: "",
@@ -45,6 +41,7 @@ jobInfo.push(new NewExperience());
 const projectInfo = [];
 projectInfo.push(new NewProject());
 const otherInfoObj = {
+  technicalSkills: [""],
   skills: [""],
   languages: [""],
   hobbies: [""],

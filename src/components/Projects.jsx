@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 class NewProject {
   constructor() {
     this.projectName = "";
@@ -7,6 +9,7 @@ class NewProject {
     this.projectSummary = "";
     this.isSelected = true;
     this.added = false;
+    this.id = uuidv4();
   }
 }
 
@@ -231,7 +234,7 @@ function Project({ projectData, setProjectData }) {
             </div>
           </div>
           <div className="single-input-row">
-            <label htmlFor="projectSummary">Project Summary (Optional)</label>
+            <label htmlFor="projectSummary">Project Summary</label>
             <textarea
               name="projectSummary"
               id="projectSummary"

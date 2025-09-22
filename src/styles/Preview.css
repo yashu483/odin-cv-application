@@ -1,3 +1,11 @@
+.main-section-component:has(.preview) {
+  align-items: center;
+  background-color: rgb(244, 246, 249);
+}
+
+.main-section-component:has(.preview) > h2 {
+  align-self: flex-start;
+}
 .download-button {
   border: 2px solid gray;
   background-color: greenyellow;
@@ -16,19 +24,125 @@
 
 /* resume left section */
 .resume-left-section {
-  padding: 10px;
+  padding: 24px;
   background-color: oklch(37.9% 0.146 265.522);
-  /* background-color: oklch(42.4% 0.199 265.638); */
 }
 
+.resume-left-section > * {
+  text-align: start;
+}
+.resume-profile-pic-container {
+}
+.resume-profile-pic-div {
+}
+
+.resume-profile-pic {
+  width: 180px;
+  height: 180px;
+  border: 5px solid oklch(87% 0 0);
+  border-radius: 250px;
+}
+
+.left-section-h3 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border-bottom: 1px solid white;
+  margin-bottom: 15px;
+}
+
+.left-section-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 4px;
+  flex-wrap: nowrap;
+  padding: 0;
+}
+
+.left-section-value-p {
+  color: oklch(92.2% 0 0);
+  margin: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  padding: 0;
+  transform: translateY(-4px);
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+
+.left-section-row > img,
+.left-section-row > svg {
+  color: oklch(92.2% 0 0);
+  width: 0.9rem;
+  height: o.9rem;
+}
+
+.resume-left-section-row > ul {
+  padding: 0;
+  padding-left: 24px;
+  margin: 0;
+}
 /* resume right section */
 .resume-right-section {
+  padding: 12px 24px;
+  background-color: oklch(96.8% 0.007 247.896);
 }
-.main-section-component:has(.preview) {
-  align-items: center;
-  background-color: rgb(244, 246, 249);
+.resume-right-section > * {
+  text-align: start;
+}
+.resume-full-name {
+  color: rgba(28, 57, 142, 0.8);
+  font-size: 2.1em;
+  margin: 0;
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+.resume-h2 {
+  margin: 0;
+  margin-top: 24px;
+  border-bottom: 1px solid oklch(70.4% 0.04 256.788);
+  color: rgba(25, 60, 184, 0.8);
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+.resume-detail-paragraphs {
+  margin: 0;
+  margin-top: 10px;
 }
 
-.main-section-component:has(.preview) > h2 {
-  align-self: flex-start;
+.resume-project-card {
+  padding-bottom: 20px;
+}
+.resume-h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+.resume-project-info-p {
+  font-size: 0.875rem;
+  color: oklch(44.6% 0.043 257.281);
+  margin: 0;
+}
+.resume-info-span {
+  font-weight: 700;
+}
+
+.resume-h4 {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: oklch(44.6% 0.043 257.281);
+  margin: 0;
+  font-weight: 600;
+}
+
+.resume-project-card:last-child {
+  padding-bottom: 0 !important;
+}
+.invisible-20px {
+  min-width: 20px;
+  color: transparent;
+  opacity: 0;
 }
