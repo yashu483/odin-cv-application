@@ -100,6 +100,7 @@ const ShowOtherInfo = function ShowOtherInfo({ otherInfo, setOtherInfo }) {
               otherInfoCategoryArray={otherInfo[key]}
               otherInfo={otherInfo}
               setOtherInfo={setOtherInfo}
+              key={key}
             />
           );
         })}

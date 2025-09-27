@@ -22,13 +22,13 @@ const personalInfo = {
 };
 const SECTIONS = [
   {
-    name: "Personal Information",
+    name: "Personal Info",
     key: "personalInfo",
   },
   { name: "Education", key: "education" },
   { name: "Experiences", key: "experience" },
   { name: "Projects", key: "projects" },
-  { name: "Other Information", key: "otherInfo" },
+  { name: "Other Info", key: "otherInfo" },
   { name: "Preview", key: "preview" },
 ];
 
@@ -57,7 +57,7 @@ function Header({ selectedSection, changeSection }) {
             key={section.key}
             type="button"
             onClick={() => changeSection(section.key)}
-            className={`section-buttons ${
+            className={`button-29 ${
               selectedSection === section.key ? "selected-section-button" : ""
             }`}
           >
@@ -68,12 +68,45 @@ function Header({ selectedSection, changeSection }) {
     </header>
   );
 }
-function Footer() {
+function Footer({ selectedSection, changeSection }) {
+  const navigateButtonHandler = function navigateButtonHandler(e) {
+    let selectedSectionIndex;
+    let indexToSelect;
+    SECTIONS.forEach((item, index) => {
+      if (item.key === selectedSection) {
+        selectedSectionIndex = index;
+      }
+    });
+    if (
+      (selectedSectionIndex === 0 && e.target.id === "previous") ||
+      (selectedSectionIndex === SECTIONS.length - 1 && e.target.id === "next")
+    )
+      return;
+    else {
+      if (e.target.id === "previous") indexToSelect = selectedSectionIndex - 1;
+      else indexToSelect = selectedSectionIndex + 1;
+    }
+    changeSection(SECTIONS[indexToSelect].key);
+  };
   return (
     <footer>
       <nav className="elevated">
-        <button type="button">Previous</button>
-        <button type="button">Next</button>
+        <button
+          type="button"
+          id="previous"
+          className="button-29"
+          onClick={navigateButtonHandler}
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          id="next"
+          className="button-29"
+          onClick={navigateButtonHandler}
+        >
+          Next
+        </button>
       </nav>
       <h3 className="footer-link">
         <a href="#">Created By Yashu</a>
@@ -175,7 +208,7 @@ function Body() {
         otherInfo={otherInfo}
         setOtherInfo={setOtherInfo}
       />
-      <Footer />
+      <Footer selectedSection={selectedSection} changeSection={changeSection} />
     </>
   );
 }
