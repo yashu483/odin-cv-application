@@ -25,21 +25,17 @@
 /* resume left section */
 .resume-left-section {
   padding: 24px;
-  background-color: oklch(37.9% 0.146 265.522);
+  background-color: rgb(28, 57, 142);
 }
 
 .resume-left-section > * {
   text-align: start;
 }
-.resume-profile-pic-container {
-}
-.resume-profile-pic-div {
-}
 
 .resume-profile-pic {
   width: 180px;
   height: 180px;
-  border: 5px solid oklch(87% 0 0);
+  border: 5px solid rgb(212, 212, 212);
   border-radius: 250px;
 }
 
@@ -61,7 +57,7 @@
 }
 
 .left-section-value-p {
-  color: oklch(92.2% 0 0);
+  color: rgb(229, 229, 229);
   margin: 0;
   word-break: break-all;
   word-wrap: break-word;
@@ -74,7 +70,7 @@
 
 .left-section-row > img,
 .left-section-row > svg {
-  color: oklch(92.2% 0 0);
+  color: rgb(229, 229, 229);
   width: 0.9rem;
   height: o.9rem;
 }
@@ -87,7 +83,7 @@
 /* resume right section */
 .resume-right-section {
   padding: 12px 24px;
-  background-color: oklch(96.8% 0.007 247.896);
+  background-color: rgb(241, 245, 249);
 }
 .resume-right-section > * {
   text-align: start;
@@ -102,7 +98,7 @@
 .resume-h2 {
   margin: 0;
   margin-top: 24px;
-  border-bottom: 1px solid oklch(70.4% 0.04 256.788);
+  border-bottom: 1px solid rgb(144, 161, 185);
   color: rgba(25, 60, 184, 0.8);
   font-weight: 600;
   font-size: 1.25rem;
@@ -123,7 +119,7 @@
 }
 .resume-project-info-p {
   font-size: 0.875rem;
-  color: oklch(44.6% 0.043 257.281);
+  color: rgb(69, 85, 108);
   margin: 0;
 }
 .resume-info-span {
@@ -133,7 +129,7 @@
 .resume-h4 {
   font-size: 1rem;
   line-height: 1.5;
-  color: oklch(44.6% 0.043 257.281);
+  color: rgb(69, 85, 108);
   margin: 0;
   font-weight: 600;
 }

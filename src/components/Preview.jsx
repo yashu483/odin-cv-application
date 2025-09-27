@@ -1,3 +1,5 @@
+import html2pdf from "html2pdf.js";
+
 import githubIcon from "./../assets/icons/github-mark-white.svg";
 import linkedInIcon from "./../assets/icons/linkedin.png";
 import mailIcon from "./../assets/icons/mail.png";
@@ -188,11 +190,22 @@ function Preview({
   projectData,
   otherInfo,
 }) {
+  const handleDownload = () => {
+    const element = document.getElementById("resume");
+    const opt = {
+      margin: 10,
+      filename: "resume.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+    html2pdf().set(opt).from(element).save();
+  };
   return (
     <>
       <div className="main-section-component">
         <h2 className="section-headings">Preview</h2>
-        <div className="preview">
+        <div className="preview" id="resume">
           <div className="resume-left-section">
             {personalData.profilePicUrl ? (
               <div className="resume-profile-pic-container">
@@ -342,7 +355,12 @@ function Preview({
           </div>
         </div>
       </div>
-      <button type="button" className="download-button">
+      <button
+        type="button"
+        className="download-button"
+        onClick={handleDownload}
+        style={{ cursor: "pointer" }}
+      >
         DOWNLOAD
       </button>
     </>
