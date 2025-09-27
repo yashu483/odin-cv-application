@@ -3,6 +3,7 @@ import html2pdf from "html2pdf.js";
 import githubIcon from "./../assets/icons/github-mark-white.svg";
 import linkedInIcon from "./../assets/icons/linkedin.png";
 import mailIcon from "./../assets/icons/mail.png";
+import globeIcon from "./../assets/icons/globe.png";
 
 const getAddedDataNumber = function getAddedDataNumber(array) {
   const newArray = array.filter((obj) => obj.isAdded);
@@ -217,7 +218,14 @@ function Preview({
               </div>
             ) : null}
             <div>
-              <h3 className="left-section-h3">CONTACT</h3>
+              {(personalData.phone.length !== 0 ||
+                personalData.email.length !== 0 ||
+                personalData.address.length !== 0 ||
+                personalData.github.length !== 0 ||
+                personalData.linkedIn.length !== 0 ||
+                personalData.personalSite.length !== 0) && (
+                <h3 className="left-section-h3">CONTACT</h3>
+              )}
               {personalData.phone.length !== 0 && (
                 <div className="left-section-row">
                   <svg
@@ -248,22 +256,7 @@ function Preview({
               )}
               {personalData.address.length !== 0 && (
                 <div className="left-section-row">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-map-pin"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
+                  <img src={globeIcon} alt="" />
                   <p className="left-section-value-p">{personalData.address}</p>
                 </div>
               )}
